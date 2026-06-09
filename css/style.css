@@ -1167,6 +1167,28 @@ body {
 .chat-messages::-webkit-scrollbar-track { background: transparent; }
 .chat-messages::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 2px; }
 
+.chat-typing {
+  display: none;
+  align-self: flex-start;
+  padding: 12px 16px;
+  background: var(--gray-30);
+  border-radius: 16px 16px 16px 4px;
+  gap: 4px;
+}
+.chat-typing.show { display: flex; }
+.chat-typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gray-70);
+  animation: typingDot 1.2s infinite ease-in-out;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingDot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
 .chat-msg {
   display: flex;
   flex-direction: column;
