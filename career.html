@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карьера в Intelline — Вакансии</title>
+<meta name="description" content="Открытые вакансии в Intelline. Присоединяйтесь к команде, которая строит будущее AI-автоматизации.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.page-hero { padding: 140px 24px 60px; text-align: center; position: relative; }
+.page-hero h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px; }
+.page-hero p { color: var(--text2); max-width: 640px; margin: 0 auto; font-size: 1.05rem; line-height: 1.7; }
+.page-content { padding: 0 24px 80px; }
+.page-content .section-inner { max-width: var(--max-width); margin: 0 auto; }
+.vacancy { background: var(--gray-20); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--radius); padding: 28px; margin-bottom: 16px; transition: all var(--transition); cursor: pointer; }
+.vacancy:hover { border-color: rgba(124,58,237,0.15); }
+.vacancy h3 { font-size:1.1rem;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between; }
+.vacancy h3 span { font-size:0.8rem;color:var(--accent);font-weight:500; }
+.vacancy p { color:var(--text2);font-size:0.88rem;line-height:1.6; }
+.vacancy .tags { display:flex;gap:8px;flex-wrap:wrap;margin-top:12px; }
+.vacancy .tags span { font-size:0.75rem;color:var(--text3);background:var(--bg3);padding:4px 12px;border-radius:100px; }
+</style>
+</head>
+<body>
+<nav class="navbar scrolled" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06d6a0"/></linearGradient></defs>
+        <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" fill="url(#lg)" opacity="0.06"/>
+        <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" stroke="url(#lg)" stroke-width="0.8" opacity="0.3"/>
+        <path d="M20 1L10 13L20 20L3 13L20 1Z" fill="url(#lg)" opacity="0.12"/>
+        <path d="M20 1L30 13L20 20L37 13L20 1Z" fill="#06d6a0" opacity="0.08"/>
+        <path d="M10 13L20 20L14 32L3 27L10 13Z" fill="url(#lg)" opacity="0.06"/>
+        <path d="M30 13L20 20L26 32L37 27L30 13Z" fill="#06d6a0" opacity="0.05"/>
+        <circle cx="20" cy="20" r="4" fill="url(#lg)"/>
+        <circle cx="12" cy="28" r="1.8" fill="#7c3aed" opacity="0.7"/>
+        <circle cx="28" cy="28" r="1.8" fill="#06d6a0" opacity="0.7"/>
+        <circle cx="20" cy="10" r="1.8" fill="#a78bfa" opacity="0.7"/>
+      </svg>
+      <span class="nav-logo-text">Intelline</span>
+      <span class="nav-logo-slogan">AI для вашего бизнеса</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#solutions">Решения</a>
+      <a href="index.html#cases">Кейсы</a>
+      <a href="index.html#process">Процесс</a>
+      <a href="index.html#contact" class="nav-cta">Свяжитесь с нами</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+<section class="page-hero">
+  <div class="hero-bg"><div class="hero-grid"></div><div class="hero-glow hero-glow-1"></div><div class="hero-glow hero-glow-2"></div></div>
+  <div style="position:relative;z-index:1;">
+    <span class="section-label">Карьера</span>
+    <h1>Работайте там, где<br>создаётся <span class="grad-text">будущее</span></h1>
+    <p>Intelline — это команда инженеров, исследователей и продакт-менеджеров, которые меняют представление о том, как бизнес использует ИИ.</p>
+  </div>
+</section>
+<section class="page-content">
+  <div class="section-inner">
+    <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:8px;">Открытые вакансии</h2>
+    <p style="color:var(--text2);margin-bottom:28px;">Мы ищем талантливых людей, которым не всё равно.</p>
+    <div class="vacancy">
+      <h3>Senior AI Engineer <span>от 250 000 ₽</span></h3>
+      <p>Разработка и внедрение мультиагентных систем на базе LLM. Опыт работы с RAG-архитектурами, LangChain, векторными БД.</p>
+      <div class="tags"><span>Python</span><span>LangChain</span><span>LLM</span><span>PostgreSQL</span><span>Docker</span></div>
+    </div>
+    <div class="vacancy">
+      <h3>Product Manager (AI/ML) <span>от 200 000 ₽</span></h3>
+      <p>Управление продуктовой разработкой ИИ-агентов: от исследования потребностей до запуска и метрик.</p>
+      <div class="tags"><span>Product Strategy</span><span>ML</span><span>Analytics</span><span>CRM</span></div>
+    </div>
+    <div class="vacancy">
+      <h3>Frontend-разработчик <span>от 180 000 ₽</span></h3>
+      <p>Разработка интерфейсов для AI-продуктов: чат-виджеты, дашборды, конструкторы агентов.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Tailwind</span><span>WebSockets</span></div>
+    </div>
+    <div class="vacancy">
+      <h3>Technical Writer <span>от 150 000 ₽</span></h3>
+      <p>Создание документации для разработчиков и пользователей AI-продуктов. Английский от B2.</p>
+      <div class="tags"><span>Technical Writing</span><span>API Docs</span><span>English</span></div>
+    </div>
+    <div style="text-align:center;margin-top:40px;padding:32px;background:var(--gray-20);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.04);">
+      <h3 style="margin-bottom:8px;">Не нашли подходящую вакансию?</h3>
+      <p style="color:var(--text2);margin-bottom:16px;">Отправьте резюме — мы всегда открыты для талантливых людей.</p>
+      <a href="mailto:alexkruppy@mail.ru?subject=Резюме" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Отправить резюме</a>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <svg class="footer-logo" viewBox="0 0 40 40" fill="none">
+          <defs><linearGradient id="lgF" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06d6a0"/></linearGradient></defs>
+          <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" fill="url(#lgF)" opacity="0.06"/>
+          <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" stroke="url(#lgF)" stroke-width="0.8" opacity="0.3"/>
+          <path d="M20 1L10 13L20 20L3 13L20 1Z" fill="url(#lgF)" opacity="0.12"/>
+          <path d="M20 1L30 13L20 20L37 13L20 1Z" fill="#06d6a0" opacity="0.08"/>
+          <path d="M10 13L20 20L14 32L3 27L10 13Z" fill="url(#lgF)" opacity="0.06"/>
+          <path d="M30 13L20 20L26 32L37 27L30 13Z" fill="#06d6a0" opacity="0.05"/>
+          <circle cx="20" cy="20" r="4" fill="url(#lgF)"/>
+          <circle cx="12" cy="28" r="1.8" fill="#7c3aed" opacity="0.7"/>
+          <circle cx="28" cy="28" r="1.8" fill="#06d6a0" opacity="0.7"/>
+          <circle cx="20" cy="10" r="1.8" fill="#a78bfa" opacity="0.7"/>
+        </svg>
+        <div>
+          <span class="footer-brand-name">Intelline</span>
+          <span class="footer-brand-slogan">AI для вашего бизнеса</span>
+        </div>
+      </div>
+      <p class="footer-desc">Автономные ИИ-агенты для автоматизации бизнеса. Снижаем издержки, ускоряем процессы, освобождаем время вашей команды.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Решения</h4>
+        <a href="solutions/ai-support.html">ИИ-поддержка</a>
+        <a href="solutions/automation.html">Автоматизация рутины</a>
+        <a href="solutions/llm-crm.html">LLM в CRM</a>
+        <a href="solutions/analytics.html">Аналитика</a>
+      </div>
+      <div class="footer-col">
+        <h4>Компания</h4>
+        <a href="about.html">О нас</a>
+        <a href="index.html#cases">Кейсы</a>
+        <a href="blog.html">Блог</a>
+        <a href="career.html">Карьера</a>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <a href="mailto:alexkruppy@mail.ru">alexkruppy@mail.ru</a>
+        <a href="tel:+79856185211">+7 (985) 618-52-11</a>
+        <div class="footer-social">
+          <a href="https://t.me/intelline_ai" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://youtube.com/@intelline" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com/company/intelline" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Intelline. Все права защищены.</span>
+      <a href="privacy.html">Политика конфиденциальности</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

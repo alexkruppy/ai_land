@@ -18,24 +18,35 @@
     <a href="#" class="nav-logo">
       <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none">
         <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06d6a0"/></linearGradient></defs>
-        <!-- Outer ring -->
-        <circle cx="20" cy="20" r="18" fill="url(#lg)" opacity="0.08"/>
-        <circle cx="20" cy="20" r="18" stroke="url(#lg)" stroke-width="1.2" opacity="0.4"/>
-        <!-- Left arc -->
-        <path d="M20 6A14 14 0 1 0 32 26" stroke="url(#lg)" stroke-width="2" stroke-linecap="round" opacity="0.6">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
-        </path>
-        <!-- Right arc -->
-        <path d="M20 34A14 14 0 1 0 8 14" stroke="url(#lg)" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-        <!-- Central dot -->
-        <circle cx="20" cy="20" r="3" fill="url(#lg)">
-          <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+        <!-- Crystal / Diamond base -->
+        <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" fill="url(#lg)" opacity="0.06"/>
+        <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" stroke="url(#lg)" stroke-width="0.8" opacity="0.3"/>
+        <!-- Left facet -->
+        <path d="M20 1L10 13L20 20L3 13L20 1Z" fill="url(#lg)" opacity="0.12"/>
+        <!-- Right facet -->
+        <path d="M20 1L30 13L20 20L37 13L20 1Z" fill="#06d6a0" opacity="0.08"/>
+        <!-- Bottom-left facet -->
+        <path d="M10 13L20 20L14 32L3 27L10 13Z" fill="url(#lg)" opacity="0.06"/>
+        <!-- Bottom-right facet -->
+        <path d="M30 13L20 20L26 32L37 27L30 13Z" fill="#06d6a0" opacity="0.05"/>
+        <!-- Neural core node -->
+        <circle cx="20" cy="20" r="4" fill="url(#lg)">
+          <animate attributeName="r" values="4;5;4" dur="2.5s" repeatCount="indefinite"/>
         </circle>
-        <!-- Data points on arcs -->
-        <circle cx="10" cy="12" r="1.8" fill="#7c3aed" opacity="0.7"/>
-        <circle cx="30" cy="28" r="1.8" fill="#06d6a0" opacity="0.7"/>
-        <circle cx="8" cy="22" r="1.5" fill="#7c3aed" opacity="0.5"/>
-        <circle cx="32" cy="18" r="1.5" fill="#06d6a0" opacity="0.5"/>
+        <circle cx="20" cy="20" r="6" fill="none" stroke="url(#lg)" stroke-width="0.5" opacity="0.3">
+          <animate attributeName="r" values="6;9;6" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Data orbit dots -->
+        <circle cx="12" cy="28" r="1.8" fill="#7c3aed" opacity="0.7">
+          <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="28" cy="28" r="1.8" fill="#06d6a0" opacity="0.7">
+          <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" begin="0.6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="20" cy="10" r="1.8" fill="#a78bfa" opacity="0.7">
+          <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" begin="1.2s" repeatCount="indefinite"/>
+        </circle>
       </svg>
       <span class="nav-logo-text">Intelline</span>
       <span class="nav-logo-slogan">AI для вашего бизнеса</span>
@@ -435,15 +446,16 @@
       <div class="footer-brand">
         <svg class="footer-logo" viewBox="0 0 40 40" fill="none">
           <defs><linearGradient id="lgF" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06d6a0"/></linearGradient></defs>
-          <circle cx="20" cy="20" r="18" fill="url(#lgF)" opacity="0.08"/>
-          <circle cx="20" cy="20" r="18" stroke="url(#lgF)" stroke-width="1.2" opacity="0.4"/>
-          <path d="M20 6A14 14 0 1 0 32 26" stroke="url(#lgF)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-          <path d="M20 34A14 14 0 1 0 8 14" stroke="url(#lgF)" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
-          <circle cx="20" cy="20" r="3" fill="url(#lgF)"/>
-          <circle cx="10" cy="12" r="1.8" fill="#7c3aed" opacity="0.7"/>
-          <circle cx="30" cy="28" r="1.8" fill="#06d6a0" opacity="0.7"/>
-          <circle cx="8" cy="22" r="1.5" fill="#7c3aed" opacity="0.5"/>
-          <circle cx="32" cy="18" r="1.5" fill="#06d6a0" opacity="0.5"/>
+          <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" fill="url(#lgF)" opacity="0.06"/>
+          <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" stroke="url(#lgF)" stroke-width="0.8" opacity="0.3"/>
+          <path d="M20 1L10 13L20 20L3 13L20 1Z" fill="url(#lgF)" opacity="0.12"/>
+          <path d="M20 1L30 13L20 20L37 13L20 1Z" fill="#06d6a0" opacity="0.08"/>
+          <path d="M10 13L20 20L14 32L3 27L10 13Z" fill="url(#lgF)" opacity="0.06"/>
+          <path d="M30 13L20 20L26 32L37 27L30 13Z" fill="#06d6a0" opacity="0.05"/>
+          <circle cx="20" cy="20" r="4" fill="url(#lgF)"/>
+          <circle cx="12" cy="28" r="1.8" fill="#7c3aed" opacity="0.7"/>
+          <circle cx="28" cy="28" r="1.8" fill="#06d6a0" opacity="0.7"/>
+          <circle cx="20" cy="10" r="1.8" fill="#a78bfa" opacity="0.7"/>
         </svg>
         <div>
           <span class="footer-brand-name">Intelline</span>
@@ -455,32 +467,32 @@
     <div class="footer-links">
       <div class="footer-col">
         <h4>Решения</h4>
-        <a href="#">ИИ-поддержка</a>
-        <a href="#">Автоматизация рутины</a>
-        <a href="#">LLM в CRM</a>
-        <a href="#">Аналитика</a>
+        <a href="solutions/ai-support.html">ИИ-поддержка</a>
+        <a href="solutions/automation.html">Автоматизация рутины</a>
+        <a href="solutions/llm-crm.html">LLM в CRM</a>
+        <a href="solutions/analytics.html">Аналитика</a>
       </div>
       <div class="footer-col">
         <h4>Компания</h4>
-        <a href="#">О нас</a>
-        <a href="#">Кейсы</a>
-        <a href="#">Блог</a>
-        <a href="#">Карьера</a>
+        <a href="about.html">О нас</a>
+        <a href="#cases">Кейсы</a>
+        <a href="blog.html">Блог</a>
+        <a href="career.html">Карьера</a>
       </div>
       <div class="footer-col">
         <h4>Контакты</h4>
-        <a href="mailto:hello@intelline.ai">hello@intelline.ai</a>
-        <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+        <a href="mailto:alexkruppy@mail.ru">alexkruppy@mail.ru</a>
+        <a href="tel:+79856185211">+7 (985) 618-52-11</a>
         <div class="footer-social">
-          <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://t.me/intelline_ai" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://youtube.com/@intelline" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://linkedin.com/company/intelline" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 Intelline. Все права защищены.</span>
-      <a href="#">Политика конфиденциальности</a>
+      <a href="privacy.html">Политика конфиденциальности</a>
     </div>
   </div>
 </footer>
