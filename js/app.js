@@ -193,6 +193,19 @@ chatBubble.addEventListener('click', () => {
   chatBubble.classList.add('hidden');
   chatPanel.classList.add('open');
   scrollChat();
+  // After opening, show niche selection options
+  if (agent.step === 'intro') {
+    setTimeout(() => {
+      showOptions([
+        { label: 'Производство', action: () => setNiche('Производство') },
+        { label: 'Ритейл / E-com', action: () => setNiche('Ритейл / E-commerce') },
+        { label: 'Логистика', action: () => setNiche('Логистика') },
+        { label: 'Услуги', action: () => setNiche('Услуги') },
+        { label: 'IT / Финтех', action: () => setNiche('IT / Финтех') },
+        { label: 'Другое', action: () => setNiche('Другое') }
+      ]);
+    }, 600);
+  }
 });
 
 chatClose.addEventListener('click', () => {
@@ -219,16 +232,6 @@ async function processInput(text) {
   const knowledge = matchKnowledge(text);
 
   if (agent.step === 'intro') {
-    await aiReply('Приятно познакомиться! Какая у вас сфера бизнеса?');
-    agent.step = 'niche';
-    showOptions([
-      { label: 'Производство', action: () => setNiche('Производство') },
-      { label: 'Ритейл / E-com', action: () => setNiche('Ритейл / E-commerce') },
-      { label: 'Логистика', action: () => setNiche('Логистика') },
-      { label: 'Услуги', action: () => setNiche('Услуги') },
-      { label: 'IT / Финтех', action: () => setNiche('IT / Финтех') },
-      { label: 'Другое', action: () => setNiche('Другое') }
-    ]);
     return;
   }
 
