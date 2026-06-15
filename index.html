@@ -59,6 +59,7 @@
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#solutions">Решения</a>
+      <a href="#solution-support">Поддержка 24/7</a>
       <a href="#pricing">Тарифы</a>
       <a href="#process">Процесс</a>
       <a href="#contact" class="nav-cta">Заказать аудит</a>
@@ -198,7 +199,7 @@
       <p class="section-sub">Проектируем, разрабатываем и внедряем агентов для любого бизнес-процесса</p>
     </div>
     <div class="solutions-grid">
-      <div class="solution-card">
+      <div class="solution-card" onclick="document.getElementById('solution-support').scrollIntoView({behavior:'smooth',block:'start'});" style="cursor:pointer;">
         <div class="solution-icon" style="--icon-color: #7c3aed;"><i class="fas fa-headset"></i></div>
         <h3>AI-агенты для поддержки 24/7</h3>
         <p>Автономные боты, которые отвечают на 80% вопросов клиентов, эскалируют сложные запросы и работают круглосуточно без выходных.</p>
@@ -237,6 +238,48 @@
           <li>Интеграция с ERP и корпоративными системами</li>
           <li>Контроль исполнения и уведомления</li>
         </ul>
+      </div>
+    </div>
+    <div id="solution-support" style="margin-top:60px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.06);">
+      <div class="section-header">
+        <span class="section-label">Поддержка 24/7</span>
+        <h2>Как работают наши <span class="grad-text">AI-агенты поддержки</span></h2>
+        <p class="section-sub">Автономные боты, которые отвечают на 80% вопросов клиентов и эскалируют сложные запросы людям</p>
+      </div>
+      <div class="feature-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;">
+        <div class="feature-card" style="background:var(--gray-20);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:28px;">
+          <i class="fas fa-comment-dots" style="font-size:1.5rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+          <h3 style="font-size:1rem;margin-bottom:8px;">Мгновенные ответы</h3>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.6;">Бот отвечает в Telegram, Max, на сайте или в вашем приложении. Время ответа — секунды.</p>
+        </div>
+        <div class="feature-card" style="background:var(--gray-20);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:28px;">
+          <i class="fas fa-brain" style="font-size:1.5rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+          <h3 style="font-size:1rem;margin-bottom:8px;">Понимание контекста</h3>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.6;">ИИ помнит историю диалога, понимает сложные вопросы и даёт релевантные ответы на основе базы знаний.</p>
+        </div>
+        <div class="feature-card" style="background:var(--gray-20);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:28px;">
+          <i class="fas fa-level-up-alt" style="font-size:1.5rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+          <h3 style="font-size:1rem;margin-bottom:8px;">Умная эскалация</h3>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.6;">Если бот не может решить вопрос — передаёт диалог оператору с полным контекстом переписки.</p>
+        </div>
+        <div class="feature-card" style="background:var(--gray-20);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:28px;">
+          <i class="fas fa-database" style="font-size:1.5rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+          <h3 style="font-size:1rem;margin-bottom:8px;">Интеграция с базой знаний</h3>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.6;">Подключаем вашу документацию, FAQ, инструкции. ИИ обучается на них за 1 день.</p>
+        </div>
+        <div class="feature-card" style="background:var(--gray-20);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:28px;">
+          <i class="fas fa-chart-bar" style="font-size:1.5rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+          <h3 style="font-size:1rem;margin-bottom:8px;">Аналитика и отчёты</h3>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.6;">Дашборд с метриками: сколько вопросов решено, среднее время, удовлетворённость клиентов.</p>
+        </div>
+        <div class="feature-card" style="background:var(--gray-20);border:1px solid rgba(255,255,255,0.04);border-radius:var(--radius);padding:28px;">
+          <i class="fas fa-shield-alt" style="font-size:1.5rem;color:var(--accent);margin-bottom:12px;display:block;"></i>
+          <h3 style="font-size:1rem;margin-bottom:8px;">Безопасность</h3>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.6;">Данные клиентов не покидают ваш контур. Поддержка 152-ФЗ о персональных данных.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="#contact" class="btn btn-primary btn-lg"><i class="fas fa-rocket"></i> Заказать внедрение</a>
       </div>
     </div>
   </div>
@@ -463,7 +506,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; 2026 IntelLine. Все права защищены.</span>
-      <a href="privacy.html">Политика конфиденциальности</a>
+      <a href="#contact">Политика конфиденциальности</a>
     </div>
   </div>
 </footer>

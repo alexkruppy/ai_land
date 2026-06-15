@@ -1787,4 +1787,5 @@ body {
   .solution-card::after, .adv-card::after, .case-card::after {
     display: none;
   }
+  .feature-grid { grid-template-columns: 1fr !important; }
 }
