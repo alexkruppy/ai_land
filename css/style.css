@@ -1300,6 +1300,143 @@ body {
   transform: translateY(0);
 }
 
+/* ===== AGGRESSIVE AI-TECH OVERLAY ===== */
+.scan-lines {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.02) 2px,
+    rgba(0, 255, 255, 0.02) 4px
+  );
+}
+
+.grad-text {
+  text-shadow: 0 0 40px rgba(124, 58, 237, 0.35), 0 0 80px rgba(6, 214, 160, 0.15);
+}
+
+#particleCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-badge {
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2), inset 0 0 20px rgba(124, 58, 237, 0.05);
+}
+
+/* Neon animated gradient borders on cards */
+.solution-card, .adv-card, .case-card {
+  position: relative;
+}
+
+.solution-card::after, .adv-card::after, .case-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary), var(--accent));
+  background-size: 300% 300%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition);
+  animation: borderGlow 4s ease infinite;
+}
+
+.solution-card:hover::after, .adv-card:hover::after, .case-card:hover::after {
+  opacity: 1;
+}
+
+@keyframes borderGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Hero grid enhancement */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.06) 1px, transparent 1px);
+  animation: gridPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes gridPulse {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Glitch text effect on h1 */
+.hero h1 .glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.hero h1 .glitch-text:hover {
+  animation: glitch 0.3s ease;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); text-shadow: -2px 0 #06d6a0, 2px 0 #7c3aed; }
+  20% { transform: translate(-2px, 1px); text-shadow: -3px 0 #06d6a0, 3px 0 #7c3aed; }
+  40% { transform: translate(2px, -1px); text-shadow: 2px 0 #06d6a0, -2px 0 #7c3aed; }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0); text-shadow: 0 0 40px rgba(124, 58, 237, 0.3), 0 0 80px rgba(6, 214, 160, 0.15); }
+}
+
+/* Neon section separator */
+.section-dark + .section::before,
+.section + .section-dark::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
+  opacity: 0.4;
+}
+
+/* Pulse glow on primary CTA */
+.btn-primary {
+  animation: ctaPulse 3s ease-in-out infinite;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3); }
+  50% { box-shadow: 0 4px 40px rgba(124, 58, 237, 0.6), 0 0 60px rgba(124, 58, 237, 0.15); }
+}
+
+/* Navbar neon bottom line on scroll */
+.navbar.scrolled {
+  border-bottom-color: rgba(124, 58, 237, 0.15);
+  box-shadow: 0 1px 30px rgba(124, 58, 237, 0.08);
+}
+
+/* Process step number glow enhancement */
+.process-num {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.3), 0 0 40px rgba(124, 58, 237, 0.1);
+  animation: numPulse 3s ease-in-out infinite;
+}
+
+@keyframes numPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.5), 0 0 60px rgba(6, 214, 160, 0.1); }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1467,5 +1604,17 @@ body {
   }
   .solution-card::before, .adv-num {
     transition: none;
+  }
+  .hero h1 .glitch-text:hover {
+    animation: none;
+  }
+  .btn-primary {
+    animation: none;
+  }
+  .process-num {
+    animation: none;
+  }
+  .solution-card::after, .adv-card::after, .case-card::after {
+    display: none;
   }
 }
