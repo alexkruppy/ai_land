@@ -26,7 +26,7 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.section, .clients, .hero-stats, .about-visual, .solutions-grid, .adv-grid, .cases-grid, .process-track').forEach(el => {
+document.querySelectorAll('.section, .clients, .hero-stats, .about-visual, .solutions-grid, .adv-grid, .process-track').forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
 });
@@ -166,12 +166,6 @@ const kb = {
     analytics: 'Аналитические ИИ-агенты: обработка данных, отчёты на естественном языке, прогнозная аналитика и поиск аномалий.',
     crm: 'Интеграция LLM в CRM (amoCRM, Bitrix24) и ERP (1С): умные подсказки, генерация КП, анализ тональности.'
   },
-  cases: [
-    'Кейс E-commerce: AI-агент поддержки — 80% быстрее ответы, 45 сек среднее время, конверсия в заказ +22%.',
-    'Кейс Финтех: аналитический агент — 94% ошибок при сверке данных, 500+ транзакций в час.',
-    'Кейс Недвижимость: sales-агент — 35% рост квалифицированных лидов, 60% лидов принято в работу.',
-    'Кейс HR: HR-агент — 70% рутины автоматизировано, скрининг 3 мин → 20 сек.'
-  ],
   process: '1. Аудит (3-5 дн) → 2. Прототип (5-7 дн) → 3. Интеграция (2-4 нед) → 4. Поддержка',
   pricing: 'Базовый агент — от 150 000 ₽. Оптимальный (до 3 агентов) — 350 000 ₽. Enterprise — индивидуально. Средний ROI — 3-5 месяцев.'
 };
@@ -242,7 +236,6 @@ function matchKnowledge(text) {
   text = text.toLowerCase();
   const pairs = [
     { words: ['цена', 'стоимость', 'сколько', 'бюджет', 'дорого', 'деньги'], resp: kb.pricing },
-    { words: ['кес', 'case', 'пример', 'результат', 'цифр'], resp: kb.cases.join('<br>') },
     { words: ['процесс', 'как работ', 'этап', 'шаг', 'срок'], resp: kb.process },
     { words: ['поддержк', 'саппорт', 'чат', 'бот', 'ответ'], resp: kb.solutions.support },
     { words: ['рутин', 'документ', 'отчёт', 'данн'], resp: kb.solutions.sales },
@@ -509,7 +502,7 @@ async function askPrice() {
 
 async function otherQuestion() {
   agent.step = 'general';
-  await aiReply('Задавайте любой вопрос! Я отвечу как ИИ-агент IntelLine. Могу рассказать о решениях, кейсах, процессе или связать с менеджером.');
+  await aiReply('Задавайте любой вопрос! Я отвечу как ИИ-агент IntelLine. Могу рассказать о решениях, процессе или связать с менеджером.');
   showInput('Ваш вопрос...', null);
   enableInput();
 }
