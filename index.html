@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Intelline — AI-агенты для автоматизации бизнеса</title>
-<meta name="description" content="Снижаем издержки бизнеса на 40%+ с помощью автономных ИИ-агентов и интеграции нейросетей в бизнес-процессы.">
+<title>Intelline — Кастомные ИИ-агенты для автоматизации бизнеса</title>
+<meta name="description" content="Автономные AI-агенты на базе GPT-4, Claude и opensource-моделей. Автоматизация продаж, поддержки и аналитики 24/7. Интеграция в CRM и ERP.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,27 +12,19 @@
 </head>
 <body>
 
-<!-- ===== SCAN LINES ===== -->
 <div class="scan-lines"></div>
 
-<!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none">
         <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06d6a0"/></linearGradient></defs>
-        <!-- Crystal / Diamond base -->
         <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" fill="url(#lg)" opacity="0.06"/>
         <path d="M20 1L37 13V27L20 39L3 27V13L20 1Z" stroke="url(#lg)" stroke-width="0.8" opacity="0.3"/>
-        <!-- Left facet -->
         <path d="M20 1L10 13L20 20L3 13L20 1Z" fill="url(#lg)" opacity="0.12"/>
-        <!-- Right facet -->
         <path d="M20 1L30 13L20 20L37 13L20 1Z" fill="#06d6a0" opacity="0.08"/>
-        <!-- Bottom-left facet -->
         <path d="M10 13L20 20L14 32L3 27L10 13Z" fill="url(#lg)" opacity="0.06"/>
-        <!-- Bottom-right facet -->
         <path d="M30 13L20 20L26 32L37 27L30 13Z" fill="#06d6a0" opacity="0.05"/>
-        <!-- Neural core node -->
         <circle cx="20" cy="20" r="4" fill="url(#lg)">
           <animate attributeName="r" values="4;5;4" dur="2.5s" repeatCount="indefinite"/>
         </circle>
@@ -40,7 +32,6 @@
           <animate attributeName="r" values="6;9;6" dur="2.5s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.3;0;0.3" dur="2.5s" repeatCount="indefinite"/>
         </circle>
-        <!-- Data orbit dots -->
         <circle cx="12" cy="28" r="1.8" fill="#7c3aed" opacity="0.7">
           <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.8s" repeatCount="indefinite"/>
         </circle>
@@ -57,14 +48,14 @@
     <div class="nav-links" id="navLinks">
       <a href="#solutions">Решения</a>
       <a href="#cases">Кейсы</a>
+      <a href="#pricing">Тарифы</a>
       <a href="#process">Процесс</a>
-      <a href="#contact" class="nav-cta">Свяжитесь с нами</a>
+      <a href="#contact" class="nav-cta">Заказать аудит</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
 <section class="hero" id="hero">
   <div class="hero-bg">
     <div class="hero-grid"></div>
@@ -73,15 +64,12 @@
     <canvas id="particleCanvas"></canvas>
     <div class="hero-illustration">
       <svg viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-ai-svg">
-        <!-- Central brain glow -->
         <circle cx="400" cy="300" r="180" fill="url(#brainGlow)" opacity="0.15">
           <animate attributeName="r" values="180;200;180" dur="5s" repeatCount="indefinite"/>
         </circle>
-        <!-- Large neural circles -->
         <circle cx="400" cy="300" r="80" fill="none" stroke="url(#aiGrad)" stroke-width="1" opacity="0.3"/>
         <circle cx="400" cy="300" r="120" fill="none" stroke="url(#aiGrad)" stroke-width="0.8" opacity="0.2"/>
         <circle cx="400" cy="300" r="160" fill="none" stroke="url(#aiGrad)" stroke-width="0.5" opacity="0.1"/>
-        <!-- Spinning nodes -->
         <g>
           <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="40s" repeatCount="indefinite"/>
           <circle cx="400" cy="160" r="4" fill="#7c3aed" opacity="0.7"/>
@@ -95,7 +83,6 @@
           <circle cx="320" cy="420" r="3.5" fill="#7c3aed" opacity="0.5"/>
           <circle cx="400" cy="440" r="4" fill="url(#aiGrad)" opacity="0.6"/>
         </g>
-        <!-- Reverse spin -->
         <g>
           <animateTransform attributeName="transform" type="rotate" from="360 400 300" to="0 400 300" dur="30s" repeatCount="indefinite"/>
           <circle cx="400" cy="180" r="2.5" fill="#a78bfa" opacity="0.5"/>
@@ -104,7 +91,6 @@
           <circle cx="530" cy="350" r="2.5" fill="#34d399" opacity="0.3"/>
           <circle cx="270" cy="350" r="2.5" fill="#a78bfa" opacity="0.3"/>
         </g>
-        <!-- Connection lines between outer nodes -->
         <g opacity="0.15">
           <line x1="400" y1="160" x2="520" y2="220" stroke="#7c3aed" stroke-width="0.5"/>
           <line x1="400" y1="160" x2="280" y2="220" stroke="#06d6a0" stroke-width="0.5"/>
@@ -115,11 +101,9 @@
           <line x1="480" y1="420" x2="400" y2="440" stroke="#7c3aed" stroke-width="0.5"/>
           <line x1="320" y1="420" x2="400" y2="440" stroke="#06d6a0" stroke-width="0.5"/>
         </g>
-        <!-- Central hexagon -->
         <path d="M400 240L448 270V330L400 360L352 330V270L400 240Z" fill="none" stroke="url(#aiGrad)" stroke-width="1" opacity="0.25">
           <animate attributeName="opacity" values="0.25;0.5;0.25" dur="4s" repeatCount="indefinite"/>
         </path>
-        <!-- Inner data particles -->
         <circle cx="400" cy="300" r="2" fill="#fff" opacity="0.4">
           <animate attributeName="r" values="1;3;1" dur="2s" repeatCount="indefinite"/>
         </circle>
@@ -131,12 +115,12 @@
     </div>
   </div>
   <div class="hero-content">
-    <div class="hero-badge">Встречайте будущее автоматизации</div>
-    <h1>Снижаем издержки бизнеса <span class="grad-text"><span class="glitch-text" data-text="на 40%+">на 40%+</span></span><br>с помощью <span class="grad-text">ИИ-агентов</span></h1>
-    <p class="hero-sub">Автономные ИИ-агенты, которые берут на себя рутину, обрабатывают заявки, интегрируются в вашу CRM и экономят тысячи часов вашей команды.</p>
+    <div class="hero-badge">LLM-агенты для вашего бизнеса</div>
+    <h1>ИИ-агенты, которые автоматизируют<br>ваши <span class="grad-text"><span class="glitch-text" data-text="продажи, поддержку и аналитику">продажи, поддержку и аналитику</span></span> 24/7</h1>
+    <p class="hero-sub">Автономные AI-агенты на базе GPT-4, Claude и opensource-моделей. Интеграция в CRM и ERP за 2–4 недели. Снижение издержек до 40%.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary btn-lg">
-        <i class="fas fa-rocket"></i> Заказать бесплатный аудит
+        <i class="fas fa-rocket"></i> Заказать аудит
       </a>
       <a href="#cases" class="btn btn-outline btn-lg">
         <i class="fas fa-play"></i> Смотреть кейсы
@@ -144,59 +128,57 @@
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="hero-stat-num" data-target="40">0</span><span class="hero-stat-suffix">%+</span>
-        <span class="hero-stat-label">Снижение издержек</span>
-      </div>
-      <div class="hero-stat">
         <span class="hero-stat-num" data-target="300">0</span><span class="hero-stat-suffix">+</span>
         <span class="hero-stat-label">Внедрений</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num" data-target="12">0</span><span class="hero-stat-suffix">×</span>
-        <span class="hero-stat-label">Ускорение процессов</span>
+        <span class="hero-stat-num" data-target="7">0</span><span class="hero-stat-suffix">+</span>
+        <span class="hero-stat-label">Лет экспертизы в AI</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="40">0</span><span class="hero-stat-suffix">%</span>
+        <span class="hero-stat-label">Снижение издержек</span>
       </div>
     </div>
   </div>
   <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
 </section>
 
-<!-- ===== CLIENTS ===== -->
 <section class="clients">
   <div class="clients-inner">
-    <p>Нам доверяют</p>
+    <p>Внедряем ИИ в компании</p>
     <div class="clients-track">
-      <span>ТехноПром</span><span>·</span><span>МедСофт</span><span>·</span><span>ЛогисТрейд</span><span>·</span><span>ФинТех</span><span>·</span><span>ЭнергоСбыт</span><span>·</span>
-      <span>ТехноПром</span><span>·</span><span>МедСофт</span><span>·</span><span>ЛогисТрейд</span><span>·</span><span>ФинТех</span><span>·</span><span>ЭнергоСбыт</span><span>·</span>
+      <span>E-commerce</span><span>·</span><span>Финтех</span><span>·</span><span>Недвижимость</span><span>·</span><span>HR Tech</span><span>·</span><span>Логистика</span><span>·</span><span>Медицина</span><span>·</span>
+      <span>E-commerce</span><span>·</span><span>Финтех</span><span>·</span><span>Недвижимость</span><span>·</span><span>HR Tech</span><span>·</span><span>Логистика</span><span>·</span><span>Медицина</span><span>·</span>
     </div>
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
 <section class="section" id="about">
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-text">
         <span class="section-label">О нас</span>
-        <h2>Мы не просто внедряем ИИ —<br>мы <span class="grad-text">перестраиваем процессы</span></h2>
-        <p>Intelline — команда инженеров и аналитиков с 7+ годами опыта в автоматизации. Мы построили 300+ AI-решений для среднего бизнеса в России и СНГ.</p>
-        <p>Наша экспертиза — не в том, чтобы «подключить ChatGPT». Мы проектируем автономные рабочие процессы, где ИИ-агенты становятся полноценными участниками команды: обрабатывают лиды, ведут клиентов, анализируют данные и запускают задачи в CRM.</p>
+        <h2>Эксперты в AI, ML и NLP<br>с продуктовым <span class="grad-text">подходом</span></h2>
+        <p>Intelline — команда инженеров и аналитиков с 7+ годами опыта в разработке кастомных AI-решений. Мы специализируемся на интеграции больших языковых моделей (GPT-4, Claude, opensource) в существующие бизнес-процессы.</p>
+        <p>Наши агенты встраиваются в CRM (amoCRM, Bitrix24) и ERP (1С) через API, становясь полноценными участниками команды: квалифицируют лиды, ведут клиентов, анализируют данные и запускают задачи.</p>
         <div class="about-features">
-          <div class="about-feature"><i class="fas fa-check-circle"></i> Продуктовый подход</div>
-          <div class="about-feature"><i class="fas fa-check-circle"></i> Прозрачная аналитика</div>
-          <div class="about-feature"><i class="fas fa-check-circle"></i> Поддержка 24/7</div>
+          <div class="about-feature"><i class="fas fa-microchip"></i> GPT-4 / Claude / Open-source</div>
+          <div class="about-feature"><i class="fas fa-plug"></i> Интеграция в CRM и ERP</div>
+          <div class="about-feature"><i class="fas fa-headset"></i> Поддержка 24/7</div>
         </div>
       </div>
       <div class="about-visual">
         <div class="about-card">
-          <div class="about-card-num">7+</div>
-          <div class="about-card-label">Лет на рынке</div>
-        </div>
-        <div class="about-card">
           <div class="about-card-num">300+</div>
-          <div class="about-card-label">Запущенных агентов</div>
+          <div class="about-card-label">Внедрённых агентов</div>
         </div>
         <div class="about-card">
-          <div class="about-card-num">98%</div>
+          <div class="about-card-num">7+</div>
+          <div class="about-card-label">Лет в AI / ML</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-num">97%</div>
           <div class="about-card-label">Клиентов рекомендуют</div>
         </div>
       </div>
@@ -204,150 +186,182 @@
   </div>
 </section>
 
-<!-- ===== SOLUTIONS ===== -->
 <section class="section section-dark" id="solutions">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-label">Наши решения</span>
-      <h2>Что мы <span class="grad-text">строим</span></h2>
-      <p class="section-sub">Готовые сценарии внедрения, которые окупаются за 2–4 месяца</p>
+      <span class="section-label">Решения</span>
+      <h2>Кастомные AI-агенты <span class="grad-text">под ваши задачи</span></h2>
+      <p class="section-sub">Проектируем, разрабатываем и внедряем агентов для любого бизнес-процесса</p>
     </div>
     <div class="solutions-grid">
       <div class="solution-card">
-        <div class="solution-icon" style="--icon-color: #7c3aed;"><i class="fas fa-robot"></i></div>
-        <h3>ИИ-агенты для поддержки</h3>
-        <p>Автономные боты, которые отвечают на 80% вопросов клиентов, эскалируют сложные запросы людям и работают 24/7 без выходных.</p>
+        <div class="solution-icon" style="--icon-color: #7c3aed;"><i class="fas fa-headset"></i></div>
+        <h3>AI-агенты для поддержки 24/7</h3>
+        <p>Автономные боты, которые отвечают на 80% вопросов клиентов, эскалируют сложные запросы и работают круглосуточно без выходных.</p>
         <ul class="solution-list">
-          <li>Мгновенные ответы в Telegram / WhatsApp / сайт</li>
-          <li>Понимание контекста диалога</li>
-          <li>Интеграция с базой знаний компании</li>
+          <li>Интеграция с Telegram, WhatsApp, сайтом</li>
+          <li>Понимание контекста и истории диалога</li>
+          <li>Подключение к базе знаний компании</li>
         </ul>
       </div>
       <div class="solution-card">
-        <div class="solution-icon" style="--icon-color: #06d6a0;"><i class="fas fa-bolt"></i></div>
-        <h3>Автоматизация рутины</h3>
-        <p>ИИ-агенты, которые берут на себя ввод данных, сверку отчётов, заполнение документов и другие повторяющиеся задачи.</p>
+        <div class="solution-icon" style="--icon-color: #06d6a0;"><i class="fas fa-chart-simple"></i></div>
+        <h3>AI-агенты для продаж</h3>
+        <p>Квалификация лидов, автозаполнение CRM, генерация КП, допродажи и анализ возражений — без участия менеджера.</p>
         <ul class="solution-list">
-          <li>Обработка входящей документации</li>
-          <li>Автозаполнение форм и отчётов</li>
-          <li>Согласование маршрутов задач</li>
+          <li>Квалификация и сегментация входящих лидов</li>
+          <li>Автоматическая генерация предложений</li>
+          <li>Анализ тональности и возражений</li>
         </ul>
       </div>
       <div class="solution-card">
-        <div class="solution-icon" style="--icon-color: #f59e0b;"><i class="fas fa-brain"></i></div>
-        <h3>Интеграция LLM в CRM</h3>
-        <p>Встраиваем языковые модели прямо в вашу CRM: умные подсказки, автозаполнение полей, генерация ответов и анализ тональности.</p>
+        <div class="solution-icon" style="--icon-color: #f59e0b;"><i class="fas fa-chart-line"></i></div>
+        <h3>Аналитические AI-агенты</h3>
+        <p>Обработка данных, построение отчётов на естественном языке, прогнозная аналитика и выявление аномалий.</p>
         <ul class="solution-list">
-          <li>Анализ истории сделок</li>
-          <li>Генерация коммерческих предложений</li>
-          <li>Предсказание закрытия сделок</li>
-        </ul>
-      </div>
-      <div class="solution-card">
-        <div class="solution-icon" style="--icon-color: #3b82f6;"><i class="fas fa-chart-line"></i></div>
-        <h3>Аналитика данных с ИИ</h3>
-        <p>Дашборды и отчёты на естественном языке. Ваши менеджеры задают вопросы — ИИ находит ответы в данных компании.</p>
-        <ul class="solution-list">
-          <li>Настраиваемые дашборды</li>
-          <li>Прогнозная аналитика</li>
-          <li>Выявление аномалий и узких мест</li>
+          <li>Дашборды и отчёты по запросу</li>
+          <li>Прогнозирование метрик и KPI</li>
+          <li>Поиск аномалий и узких мест</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== ADVANTAGES ===== -->
-<section class="section" id="advantages">
+<section class="section" id="cases">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-label">Почему Intelline</span>
-      <h2>Мы строим <span class="grad-text">рабочие процессы</span>,<br>а не просто подключаем софт</h2>
-    </div>
-    <div class="adv-grid">
-      <div class="adv-card">
-        <div class="adv-num">01</div>
-        <h3>Продуктовый подход</h3>
-        <p>Каждое внедрение — это отдельный продукт с Roadmap, метриками и итеративным улучшением. Мы не бросаем проект после запуска.</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-num">02</div>
-        <h3>Прозрачность метрик</h3>
-        <p>Вы видите, сколько задач закрыл агент, какое время сэкономил и какой ROI принёс. Все данные — в дашборде реального времени.</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-num">03</div>
-        <h3>Безопасность данных</h3>
-        <p>Ваши данные не уходят за периметр. Мы разворачиваем агентов в вашем контуре или в изолированном облаке с шифрованием.</p>
-      </div>
-      <div class="adv-card">
-        <div class="adv-num">04</div>
-        <h3>Интеграция с вашим стеком</h3>
-        <p>amoCRM, Bitrix24, 1С, Telegram, почта — наши агенты встраиваются в любые системы через API. Не нужно менять привычные инструменты.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CASES ===== -->
-<section class="section section-dark" id="cases">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-label">Кейсы</span>
-      <h2>Оцифрованные <span class="grad-text">результаты</span></h2>
-      <p class="section-sub">Реальные цифры внедрений в российских компаниях</p>
+      <span class="section-label">Кейсы и отрасли</span>
+      <h2>Реальные результаты <span class="grad-text">внедрений</span></h2>
+      <p class="section-sub">Сокращение времени ответа до 80%, рост конверсии до 35%, автоматизация до 70% рутины</p>
     </div>
     <div class="cases-grid">
       <div class="case-card">
-        <div class="case-tag">Поддержка</div>
+        <div class="case-tag">E-commerce</div>
         <div class="case-metric">
-          <span class="case-num">3×</span>
-          <span class="case-label">Быстрее обработка заявок</span>
+          <span class="case-num">80%</span>
+          <span class="case-label">Быстрее ответы клиентам</span>
         </div>
-        <h3>ТехноПром</h3>
-        <p>Производственная компания с потоком 500+ заявок в день. ИИ-агент взял на себя первичную квалификацию, ответы на типовые вопросы и маршрутизацию сложных запросов.</p>
+        <h3>Маркетплейс одежды</h3>
+        <p>AI-агент для поддержки обрабатывает 1000+ обращений в день: статусы заказов, возвраты, подбор размеров. На сложные вопросы эскалирует оператору.</p>
         <div class="case-result">
-          <span><i class="fas fa-clock"></i> 12 → 4 минуты на заявку</span>
-          <span><i class="fas fa-percent"></i> 85% закрыто без участия оператора</span>
+          <span><i class="fas fa-clock"></i> Среднее время ответа: 45 сек</span>
+          <span><i class="fas fa-percent"></i> 78% закрыто без оператора</span>
+          <span><i class="fas fa-trending-up"></i> Конверсия из чата в заказ +22%</span>
         </div>
       </div>
       <div class="case-card">
-        <div class="case-tag">Продажи</div>
+        <div class="case-tag">Финтех</div>
         <div class="case-metric">
-          <span class="case-num">30%</span>
-          <span class="case-label">Рутинных задач закрыто</span>
+          <span class="case-num">94%</span>
+          <span class="case-label">Ошибок при сверке данных</span>
         </div>
-        <h3>МедСофт</h3>
-        <p>Компания по разработке медицинского ПО внедрила ИИ-агента в CRM для автозаполнения карточек сделок, генерации КП и анализа возражений.</p>
+        <h3>Платформа микрозаймов</h3>
+        <p>Аналитический агент сверяет транзакции, проверяет compliance и формирует отчёты для регулятора. Высвобождено 3 сотрудника.</p>
         <div class="case-result">
-          <span><i class="fas fa-file-alt"></i> 40+ часов экономии в неделю</span>
-          <span><i class="fas fa-trending-up"></i> Конверсия в сделку +22%</span>
+          <span><i class="fas fa-calculator"></i> 500+ транзакций в час</span>
+          <span><i class="fas fa-users"></i> Высвобождено 3 FTE</span>
+          <span><i class="fas fa-shield"></i> Ошибки снижены на 94%</span>
         </div>
       </div>
       <div class="case-card">
-        <div class="case-tag">Логистика</div>
+        <div class="case-tag">Недвижимость</div>
         <div class="case-metric">
-          <span class="case-num">60%</span>
-          <span class="case-label">Отчётности автоматизировано</span>
+          <span class="case-num">35%</span>
+          <span class="case-label">Рост квалифицированных лидов</span>
         </div>
-        <h3>ЛогисТрейд</h3>
-        <p>Логистический оператор автоматизировал сверку путевых листов, формирование отчётов и контроль сроков доставки с помощью ИИ-аналитика.</p>
+        <h3>Агентство недвижимости</h3>
+        <p>Sales-агент принимает заявки с сайта, квалифицирует по бюджету и срокам, заполняет карточки в CRM и назначает показы.</p>
         <div class="case-result">
-          <span><i class="fas fa-calculator"></i> Ошибки снижены на 94%</span>
-          <span><i class="fas fa-users"></i> Высвобождено 5 сотрудников</span>
+          <span><i class="fas fa-filter"></i> 60% лидов принято в работу</span>
+          <span><i class="fas fa-building"></i> 120+ объектов в базе</span>
+          <span><i class="fas fa-trending-up"></i> Конверсия в сделку +35%</span>
+        </div>
+      </div>
+      <div class="case-card">
+        <div class="case-tag">HR / Кадры</div>
+        <div class="case-metric">
+          <span class="case-num">70%</span>
+          <span class="case-label">Рутины автоматизировано</span>
+        </div>
+        <h3>Кадровое агентство</h3>
+        <p>HR-агент анализирует резюме, проводит первичное интервью через Telegram, назначает встречи и ведёт базу кандидатов.</p>
+        <div class="case-result">
+          <span><i class="fas fa-file"></i> 200+ резюме в день</span>
+          <span><i class="fas fa-clock"></i> Скрининг 3 мин → 20 сек</span>
+          <span><i class="fas fa-handshake"></i> 40% собеседований назначено</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== PROCESS ===== -->
+<section class="section section-dark" id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Тарифы</span>
+      <h2>Прозрачная стоимость <span class="grad-text">внедрения</span></h2>
+      <p class="section-sub">От базового агента до enterprise-инфраструктуры</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Базовый</h3>
+          <div class="pricing-price">150 000 ₽</div>
+          <div class="pricing-period">Старт за 2 недели</div>
+        </div>
+        <ul class="pricing-list">
+          <li><i class="fas fa-check"></i> 1 AI-агент (поддержка / продажи)</li>
+          <li><i class="fas fa-check"></i> Базовая интеграция с CRM</li>
+          <li><i class="fas fa-check"></i> База знаний до 50 документов</li>
+          <li><i class="fas fa-check"></i> Telegram / WhatsApp канал</li>
+          <li><i class="fas fa-check"></i> Поддержка 2 недели после запуска</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline btn-block">Заказать</a>
+      </div>
+      <div class="pricing-card pricing-card-featured">
+        <div class="pricing-badge">Популярный</div>
+        <div class="pricing-header">
+          <h3>Оптимальный</h3>
+          <div class="pricing-price">350 000 ₽</div>
+          <div class="pricing-period">Старт за 3 недели</div>
+        </div>
+        <ul class="pricing-list">
+          <li><i class="fas fa-check"></i> До 3 AI-агентов</li>
+          <li><i class="fas fa-check"></i> Полная интеграция с CRM + ERP</li>
+          <li><i class="fas fa-check"></i> Неограниченная база знаний</li>
+          <li><i class="fas fa-check"></i> Все каналы: Telegram, WhatsApp, сайт, e-mail</li>
+          <li><i class="fas fa-check"></i> Аналитический дашборд</li>
+          <li><i class="fas fa-check"></i> Поддержка 1 месяц</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary btn-block">Заказать</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Enterprise</h3>
+          <div class="pricing-price">Индивидуально</div>
+          <div class="pricing-period">Под ключ</div>
+        </div>
+        <ul class="pricing-list">
+          <li><i class="fas fa-check"></i> Неограниченное количество агентов</li>
+          <li><i class="fas fa-check"></i> Выделенный инженер на проект</li>
+          <li><i class="fas fa-check"></i> On-premise / изолированное облако</li>
+          <li><i class="fas fa-check"></i> Кастомные LLM (GPT-4, Claude, opensource)</li>
+          <li><i class="fas fa-check"></i> SLA 99.9%</li>
+          <li><i class="fas fa-check"></i> Поддержка 24/7</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline btn-block">Связаться</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="process">
   <div class="section-inner">
     <div class="section-header">
-      <span class="section-label">Как мы работаем</span>
+      <span class="section-label">Процесс</span>
       <h2>От аудита до запуска — <span class="grad-text">4 шага</span></h2>
-      <p class="section-sub">Каждый этап прозрачен для вас и занимает от 2 до 6 недель</p>
+      <p class="section-sub">Прозрачный процесс с фиксированными сроками на каждом этапе</p>
     </div>
     <div class="process-track">
       <div class="process-step">
@@ -355,7 +369,7 @@
         <div class="process-line"></div>
         <div class="process-content">
           <h3>Аудит бизнес-процессов</h3>
-          <p>Анализируем текущие процессы, находите узкие места и точки внедрения ИИ. Фиксируем метрики «как есть».</p>
+          <p>Анализируем текущие процессы, находим узкие места и точки внедрения ИИ. Фиксируем метрики «как есть» и целевые KPI.</p>
           <span class="process-duration"><i class="far fa-calendar-alt"></i> 3–5 дней</span>
         </div>
       </div>
@@ -363,8 +377,8 @@
         <div class="process-num">2</div>
         <div class="process-line"></div>
         <div class="process-content">
-          <h3>Проектирование решения</h3>
-          <p>Проектируем архитектуру агента, сценарии диалогов, интеграции с вашими системами и точки касания с пользователями.</p>
+          <h3>Прототип и согласование</h3>
+          <p>Проектируем архитектуру агента, сценарии диалогов, интеграции и точки касания. Согласовываем прототип на реальных данных.</p>
           <span class="process-duration"><i class="far fa-calendar-alt"></i> 5–7 дней</span>
         </div>
       </div>
@@ -372,8 +386,8 @@
         <div class="process-num">3</div>
         <div class="process-line"></div>
         <div class="process-content">
-          <h3>Внедрение ИИ-агента</h3>
-          <p>Разрабатываем, тестируем и запускаем агента в вашу среду. Обучаем команду и передаём всю документацию.</p>
+          <h3>Интеграция и запуск</h3>
+          <p>Разрабатываем, тестируем в вашем контуре и запускаем агента. Интегрируем с CRM, ERP и каналами коммуникаций.</p>
           <span class="process-duration"><i class="far fa-calendar-alt"></i> 2–4 недели</span>
         </div>
       </div>
@@ -389,23 +403,28 @@
   </div>
 </section>
 
-<!-- ===== CONTACT / BRIEF ===== -->
 <section class="section section-dark" id="contact">
   <div class="section-inner">
     <div class="contact-grid">
       <div class="contact-info">
-        <span class="section-label">Свяжитесь с нами</span>
-        <h2>Готовы автоматизировать<br>свой бизнес?</h2>
-        <p>Закажите бесплатный аудит — мы проанализируем ваши процессы и покажем, где внедрение ИИ даст максимальный эффект.</p>
+        <span class="section-label">Начать проект</span>
+        <h2>Закажите бесплатный<br>пилотный проект (PoC)</h2>
+        <p>Мы проанализируем ваши процессы, подберём архитектуру агента и запустим прототип за 2 недели. Без обязательств.</p>
         <div class="contact-benefits">
           <div class="contact-benefit"><i class="fas fa-file-check"></i> Детальный отчёт по процессам</div>
           <div class="contact-benefit"><i class="fas fa-calculator"></i> Расчёт ROI внедрения</div>
-          <div class="contact-benefit"><i class="fas fa-comment-dots"></i> Демонстрация прототипа</div>
+          <div class="contact-benefit"><i class="fas fa-comment-dots"></i> Демонстрация рабочего прототипа</div>
           <div class="contact-benefit"><i class="fas fa-handshake"></i> Без обязательств</div>
+        </div>
+        <div class="contact-direct">
+          <p class="contact-direct-label">Или свяжитесь напрямую:</p>
+          <a href="https://t.me/alexkruppy" class="contact-direct-link"><i class="fab fa-telegram"></i> @alexkruppy</a>
+          <a href="mailto:alexkruppy@mail.ru" class="contact-direct-link"><i class="fas fa-envelope"></i> alexkruppy@mail.ru</a>
+          <a href="tel:+79856185211" class="contact-direct-link"><i class="fas fa-phone"></i> +7 (985) 618-52-11</a>
         </div>
       </div>
       <form class="contact-form" id="briefForm">
-        <h3>Заполните бриф</h3>
+        <h3>Оставьте заявку на PoC</h3>
         <div class="form-row">
           <input type="text" placeholder="Ваше имя" required>
         </div>
@@ -420,11 +439,12 @@
         </div>
         <div class="form-row">
           <select>
-            <option value="">Ваша ниша</option>
-            <option>Производство</option>
-            <option>Ритейл / E-commerce</option>
+            <option value="">Ваша отрасль</option>
+            <option>E-commerce</option>
+            <option>Финтех / Финансы</option>
+            <option>Недвижимость</option>
+            <option>HR / Кадры</option>
             <option>Логистика</option>
-            <option>Финансы / Финтех</option>
             <option>Медицина / HealthTech</option>
             <option>IT / Разработка</option>
             <option>Услуги / Консалтинг</option>
@@ -432,10 +452,10 @@
           </select>
         </div>
         <div class="form-row">
-          <textarea rows="3" placeholder="Опишите задачу: что хотите автоматизировать?"></textarea>
+          <textarea rows="3" placeholder="Опишите задачу: какой процесс хотите автоматизировать?"></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-lg">
-          <i class="fas fa-rocket"></i> Заказать бесплатный аудит
+          <i class="fas fa-rocket"></i> Заказать пилотный проект
         </button>
         <p class="form-note">Мы свяжемся с вами в течение 24 часов</p>
       </form>
@@ -443,7 +463,6 @@
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-main">
@@ -466,20 +485,20 @@
           <span class="footer-brand-slogan">AI для вашего бизнеса</span>
         </div>
       </div>
-      <p class="footer-desc">Автономные ИИ-агенты для автоматизации бизнеса. Снижаем издержки, ускоряем процессы, освобождаем время вашей команды.</p>
+      <p class="footer-desc">Разработка кастомных AI-агентов для автоматизации продаж, поддержки и аналитики. Интеграция LLM в CRM и ERP.</p>
     </div>
     <div class="footer-links">
       <div class="footer-col">
         <h4>Решения</h4>
-        <a href="solutions/ai-support.html">ИИ-поддержка</a>
-        <a href="solutions/automation.html">Автоматизация рутины</a>
-        <a href="solutions/llm-crm.html">LLM в CRM</a>
-        <a href="solutions/analytics.html">Аналитика</a>
+        <a href="#solutions">AI-агенты для поддержки</a>
+        <a href="#solutions">AI-агенты для продаж</a>
+        <a href="#solutions">Аналитические агенты</a>
       </div>
       <div class="footer-col">
         <h4>Компания</h4>
-        <a href="about.html">О нас</a>
+        <a href="#about">О нас</a>
         <a href="#cases">Кейсы</a>
+        <a href="#pricing">Тарифы</a>
       </div>
       <div class="footer-col">
         <h4>Контакты</h4>
@@ -498,7 +517,6 @@
   </div>
 </footer>
 
-<!-- ===== CHAT BOT ===== -->
 <div class="chat-bubble" id="chatBubble">
   <i class="fas fa-comment-dots"></i>
 </div>
@@ -525,10 +543,10 @@
     </div>
   </div>
   <div class="chat-options" id="chatOptions">
-    <button class="chat-opt" data-val="Производство">Производство</button>
-    <button class="chat-opt" data-val="Ритейл / E-commerce">Ритейл / E-commerce</button>
-    <button class="chat-opt" data-val="Логистика">Логистика</button>
-    <button class="chat-opt" data-val="Услуги">Услуги</button>
+    <button class="chat-opt" data-val="E-commerce">E-commerce</button>
+    <button class="chat-opt" data-val="Финтех">Финтех</button>
+    <button class="chat-opt" data-val="Недвижимость">Недвижимость</button>
+    <button class="chat-opt" data-val="HR / Кадры">HR / Кадры</button>
     <button class="chat-opt" data-val="Другое">Другое</button>
   </div>
   <div class="chat-input-area" id="chatInputArea">

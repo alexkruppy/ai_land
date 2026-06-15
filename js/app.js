@@ -159,20 +159,21 @@ let agent = {
 };
 
 const kb = {
-  company: 'Intelline — компания по автоматизации бизнеса с помощью ИИ. Основана в 2019 году. 300+ внедрений. Резидент Сколково.',
+  company: 'Intelline — разработка кастомных ИИ-агентов для бизнеса. 7+ лет в AI/ML, 300+ внедрений. Специализация: GPT-4, Claude, opensource-модели.',
   solutions: {
-    support: 'ИИ-агенты для поддержки клиентов 24/7. Отвечают на 80% вопросов, эскалируют сложные запросы.',
-    routine: 'Автоматизация рутины: ввод данных, сверка отчётов, заполнение документов.',
-    crm: 'Интеграция LLM в CRM: умные подсказки, генерация КП, анализ тональности.',
-    analytics: 'Аналитика данных с ИИ: отчёты на естественном языке, прогнозы, аномалии.'
+    support: 'ИИ-агенты для поддержки клиентов 24/7. Отвечают на 80% вопросов, эскалируют сложные запросы. Среднее время ответа — 45 секунд.',
+    sales: 'ИИ-агенты для продаж: квалификация лидов, генерация КП, допродажи и анализ возражений без участия менеджера.',
+    analytics: 'Аналитические ИИ-агенты: обработка данных, отчёты на естественном языке, прогнозная аналитика и поиск аномалий.',
+    crm: 'Интеграция LLM в CRM (amoCRM, Bitrix24) и ERP (1С): умные подсказки, генерация КП, анализ тональности.'
   },
   cases: [
-    'Кейс: ТехноПром — сократили время обработки заявок в 3 раза (12 мин → 4 мин).',
-    'Кейс: МедСофт — ИИ-агент закрывает 30% рутинных задач, конверсия +22%.',
-    'Кейс: ЛогисТрейд — автоматизировали 60% отчётности, ошибок -94%.'
+    'Кейс E-commerce: AI-агент поддержки — 80% быстрее ответы, 45 сек среднее время, конверсия в заказ +22%.',
+    'Кейс Финтех: аналитический агент — 94% ошибок при сверке данных, 500+ транзакций в час.',
+    'Кейс Недвижимость: sales-агент — 35% рост квалифицированных лидов, 60% лидов принято в работу.',
+    'Кейс HR: HR-агент — 70% рутины автоматизировано, скрининг 3 мин → 20 сек.'
   ],
-  process: '1. Аудит (3-5 дн) → 2. Проектирование (5-7 дн) → 3. Внедрение (2-4 нед) → 4. Поддержка',
-  pricing: 'Стоимость рассчитывается индивидуально под проект. Средний ROI — 3-5 месяцев окупаемости.'
+  process: '1. Аудит (3-5 дн) → 2. Прототип (5-7 дн) → 3. Интеграция (2-4 нед) → 4. Поддержка',
+  pricing: 'Базовый агент — от 150 000 ₽. Оптимальный (до 3 агентов) — 350 000 ₽. Enterprise — индивидуально. Средний ROI — 3-5 месяцев.'
 };
 
 function showTyping() { chatTyping.classList.add('show'); scrollChat(); }
@@ -244,7 +245,7 @@ function matchKnowledge(text) {
     { words: ['кес', 'case', 'пример', 'результат', 'цифр'], resp: kb.cases.join('<br>') },
     { words: ['процесс', 'как работ', 'этап', 'шаг', 'срок'], resp: kb.process },
     { words: ['поддержк', 'саппорт', 'чат', 'бот', 'ответ'], resp: kb.solutions.support },
-    { words: ['рутин', 'документ', 'отчёт', 'данн'], resp: kb.solutions.routine },
+    { words: ['рутин', 'документ', 'отчёт', 'данн'], resp: kb.solutions.sales },
     { words: ['crm', 'amo', 'bitrix', 'срм'], resp: kb.solutions.crm },
     { words: ['аналитик', 'анализ', 'дашборд', 'отчёт', 'график'], resp: kb.solutions.analytics },
     { words: ['компани', 'intelline', 'о вас', 'кто вы'], resp: kb.company },
@@ -400,8 +401,8 @@ async function processInput(text) {
     if (text.includes('поддер') || text.includes('саппорт') || text.includes('чат')) {
       await aiReply(kb.solutions.support + '<br><br>Хотите узнать стоимость или оставить заявку?');
       showOptions([{ label: 'Сколько стоит?', action: () => askPrice() }, { label: 'Оставить контакт', action: () => askContact() }]);
-    } else if (text.includes('рутин') || text.includes('докум') || text.includes('отчёт')) {
-      await aiReply(kb.solutions.routine + '<br><br>Подходит под вашу задачу?');
+    } else if (text.includes('докум') || text.includes('отчёт') || text.includes('сверк')) {
+      await aiReply(kb.solutions.analytics + '<br><br>Подходит под вашу задачу?');
       showOptions([{ label: 'Да, оставлю заявку', action: () => askContact() }, { label: 'Что ещё есть?', action: () => tellMore() }]);
     } else if (text.includes('crm') || text.includes('срм') || text.includes('амо')) {
       await aiReply(kb.solutions.crm + '<br><br>Заинтересовало?');
@@ -410,11 +411,10 @@ async function processInput(text) {
       await aiReply(kb.solutions.analytics + '<br><br>Хотите попробовать?');
       showOptions([{ label: 'Оставить заявку', action: () => askContact() }, { label: 'Другое решение', action: () => tellMore() }]);
     } else {
-      await aiReply('У нас 4 направления:<br><br>1. 🤖 ИИ-поддержка клиентов<br>2. ⚡ Автоматизация рутины<br>3. 🧠 LLM в CRM<br>4. 📊 Аналитика с ИИ<br><br>Какое интересует?');
+      await aiReply('У нас 3 направления:<br><br>1. 🤖 AI-агенты для поддержки<br>2. ⚡ AI-агенты для продаж<br>3. 📊 Аналитические AI-агенты<br><br>Какое интересует?');
       showOptions([
-        { label: 'ИИ-поддержка', action: () => { aiReply(kb.solutions.support); showExploreOpts(); } },
-        { label: 'Автоматизация', action: () => { aiReply(kb.solutions.routine); showExploreOpts(); } },
-        { label: 'LLM в CRM', action: () => { aiReply(kb.solutions.crm); showExploreOpts(); } },
+        { label: 'Поддержка', action: () => { aiReply(kb.solutions.support); showExploreOpts(); } },
+        { label: 'Продажи', action: () => { aiReply(kb.solutions.sales); showExploreOpts(); } },
         { label: 'Аналитика', action: () => { aiReply(kb.solutions.analytics); showExploreOpts(); } }
       ]);
     }
@@ -459,14 +459,16 @@ function setNiche(val) {
 function getSolution(pain) {
   const p = pain.toLowerCase();
   if (p.includes('поддерж') || p.includes('клиент') || p.includes('ответ') || p.includes('вопрос') || p.includes('чат') || p.includes('телефон'))
-    return 'Отличный запрос! Похоже, вам нужна <b>ИИ-поддержка клиентов</b>. Мы внедряем агентов, которые отвечают на 80% вопросов автоматически 24/7. Среднее время ответа — 3 секунды.';
-  if (p.includes('документ') || p.includes('отчёт') || p.includes('сверк') || p.includes('ввод') || p.includes('данн') || p.includes('заполн') || p.includes('бухгалтер'))
-    return 'Понимаю! Это классическая задача для <b>автоматизации рутины</b>. Наши ИИ-агенты берут на себя ввод данных, сверку отчётов и заполнение документов — без ошибок и в 10 раз быстрее.';
-  if (p.includes('crm') || p.includes('срм') || p.includes('продаж') || p.includes('сделк') || p.includes('менеджер') || p.includes('лид') || p.includes('воронк'))
-    return 'Отлично, вам подойдёт <b>интеграция LLM в CRM</b>. Мы встраиваем ИИ прямо в вашу CRM: умные подсказки, автозаполнение, генерация КП и прогноз закрытия сделок.';
-  if (p.includes('анализ') || p.includes('аналитик') || p.includes('дашборд') || p.includes('отчёт') || p.includes('прогноз') || p.includes('показател'))
-    return 'Прекрасно! Вам нужна <b>аналитика данных с ИИ</b>. Ваши менеджеры задают вопросы на русском языке — ИИ находит ответы в данных и строит прогнозы.';
-  return 'Спасибо за описание! Похоже, у нас есть подходящее решение. Могу рассказать подробнее о том, как мы автоматизируем такие задачи с помощью ИИ-агентов.';
+    return 'Отличный запрос! Похоже, вам нужен <b>AI-агент для поддержки клиентов</b>. Мы внедряем агентов, которые отвечают на 80% вопросов автоматически 24/7. Среднее время ответа — 45 секунд.';
+  if (p.includes('продаж') || p.includes('лид') || p.includes('сделк') || p.includes('менеджер') || p.includes('воронк') || p.includes('кп') || p.includes('конверси'))
+    return 'Понимаю! Вам подойдёт <b>AI-агент для продаж</b>. Квалификация лидов, генерация КП, допродажи и анализ возражений — всё автоматически.';
+  if (p.includes('crm') || p.includes('срм') || p.includes('bitrix') || p.includes('amo'))
+    return 'Отлично! Мы интегрируем LLM прямо в вашу CRM: умные подсказки, автозаполнение, генерация КП и прогноз закрытия сделок.';
+  if (p.includes('анализ') || p.includes('аналитик') || p.includes('дашборд') || p.includes('отчёт') || p.includes('прогноз') || p.includes('показател') || p.includes('данн'))
+    return 'Прекрасно! Вам нужен <b>аналитический AI-агент</b>. Отчёты на естественном языке, прогнозная аналитика, поиск аномалий и узких мест.';
+  if (p.includes('документ') || p.includes('отчёт') || p.includes('сверк') || p.includes('ввод') || p.includes('заполн') || p.includes('бухгалтер'))
+    return 'Отличная задача для <b>аналитического AI-агента</b>. Наши агенты берут на себя обработку документов, сверку отчётов и заполнение форм — без ошибок и в 10 раз быстрее.';
+  return 'Спасибо за описание! Похоже, у нас есть подходящее решение. Могу рассказать подробнее о наших AI-агентах.';
 }
 
 async function askContact() {
@@ -480,9 +482,8 @@ async function tellMore() {
   agent.step = 'tellmore';
   await aiReply('Какое из направлений вас интересует?');
   showOptions([
-    { label: 'ИИ-поддержка', action: () => { aiReply(kb.solutions.support).then(() => { showExploreOpts(); }); } },
-    { label: 'Автоматизация', action: () => { aiReply(kb.solutions.routine).then(() => { showExploreOpts(); }); } },
-    { label: 'LLM в CRM', action: () => { aiReply(kb.solutions.crm).then(() => { showExploreOpts(); }); } },
+    { label: 'Поддержка', action: () => { aiReply(kb.solutions.support).then(() => { showExploreOpts(); }); } },
+    { label: 'Продажи', action: () => { aiReply(kb.solutions.sales).then(() => { showExploreOpts(); }); } },
     { label: 'Аналитика', action: () => { aiReply(kb.solutions.analytics).then(() => { showExploreOpts(); }); } }
   ]);
 }
@@ -499,7 +500,7 @@ function showExploreOpts() {
 
 async function askPrice() {
   agent.step = 'price';
-  await aiReply('Стоимость зависит от сложности проекта:<br><br>🔹 <b>Базовый агент</b> — от 150 000 ₽<br>🔹 <b>Средний проект</b> — 300 000 - 600 000 ₽<br>🔹 <b>Комплексное внедрение</b> — от 800 000 ₽<br><br>Точную смету рассчитаем после аудита. Средний ROI — 3-5 месяцев.<br><br>Оставить контакт для расчёта?');
+  await aiReply('Стоимость зависит от масштаба проекта:<br><br>🔹 <b>Базовый агент</b> — 150 000 ₽<br>🔹 <b>Оптимальный</b> (до 3 агентов) — 350 000 ₽<br>🔹 <b>Enterprise</b> — индивидуально<br><br>Точную смету рассчитаем после аудита. Средний ROI — 3-5 месяцев.<br><br>Оставить контакт для расчёта?');
   showOptions([
     { label: 'Да, рассчитайте мне', action: () => askContact() },
     { label: 'Другой вопрос', action: () => otherQuestion() }
