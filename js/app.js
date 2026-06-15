@@ -532,12 +532,12 @@ if (briefForm) {
     e.preventDefault();
     const formData = new FormData(briefForm);
     const data = Object.fromEntries(formData.entries());
-    fetch('/api/lead', {
+    fetch(briefForm.action, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).then(res => {
-      if (res.ok) {
+      body: JSON.stringify(data),
+      headers: { 'Accept': 'application/json' }
+    }).then(res => res.json()).then(res => {
+      if (res.success) {
         briefForm.innerHTML = `
           <div style="text-align:center;padding:20px 0;">
             <div style="font-size:3rem;margin-bottom:16px;color:var(--accent);">✓</div>
