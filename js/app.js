@@ -540,16 +540,33 @@ if (window.location.search.includes('success=1')) {
   }
 }
 
-// ===== COPY EMAIL =====
-function copyEmail(el) {
-  const email = 'sales@intelline.ru';
-  navigator.clipboard.writeText(email).then(() => {
-    const orig = el.innerHTML;
+// ===== FALLBACK COPY =====
+function tryOpenAndFallback(el, url, text) {
+  const orig = el.innerHTML;
+  const ok = () => {
     el.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
     setTimeout(() => { el.innerHTML = orig; }, 2000);
-  }).catch(() => {
-    window.location.href = 'mailto:' + email;
-  });
+  };
+  let appOpened = false;
+  const detect = () => { appOpened = true; };
+  window.addEventListener('blur', detect, { once: true });
+  document.addEventListener('visibilitychange', detect, { once: true });
+  window.location.href = url;
+  setTimeout(() => {
+    window.removeEventListener('blur', detect);
+    document.removeEventListener('visibilitychange', detect);
+    if (!appOpened) {
+      navigator.clipboard.writeText(text).then(ok).catch(() => {});
+    }
+  }, 800);
+}
+
+function copyEmail(el) {
+  tryOpenAndFallback(el, 'mailto:sales@intelline.ru', 'sales@intelline.ru');
+}
+
+function copyPhone(el) {
+  tryOpenAndFallback(el, 'tel:+79856185211', '+7 (985) 618-52-11');
 }
 
 // ===== SMOOTH SCROLL (anchor offset) =====
