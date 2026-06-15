@@ -213,6 +213,12 @@ body {
   letter-spacing: -0.02em;
 }
 
+.nav-logo-text-wrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
 .nav-logo-slogan {
   display: block;
   font-size: 0.65rem;
@@ -1637,8 +1643,6 @@ body {
   .navbar.scrolled { padding: 8px 16px; }
   .nav-logo-icon { width: 40px; height: 40px; }
   .nav-logo-text { font-size: 1.1rem; }
-  .nav-logo { flex-wrap: wrap; gap: 0 10px; }
-  .nav-logo-slogan { flex-basis: 100%; margin-left: 50px; }
 
   .nav-links {
     display: none;
@@ -1770,7 +1774,7 @@ body {
 @media (max-width: 360px) {
   .nav-logo-text { font-size: 0.95rem; }
   .nav-logo-icon { width: 34px; height: 34px; }
-  .nav-logo-slogan { margin-left: 44px; font-size: 0.55rem; }
+  .nav-logo-slogan { font-size: 0.55rem; }
   .hero h1 { font-size: 1.3rem; }
   .hero-stat-num { font-size: 1.5rem; }
   .solution-icon { width: 38px; height: 38px; font-size: 1rem; }
