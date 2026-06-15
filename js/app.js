@@ -540,6 +540,18 @@ if (window.location.search.includes('success=1')) {
   }
 }
 
+// ===== COPY EMAIL =====
+function copyEmail(el) {
+  const email = 'sales@intelline.ru';
+  navigator.clipboard.writeText(email).then(() => {
+    const orig = el.innerHTML;
+    el.innerHTML = '<i class="fas fa-check"></i> Скопировано!';
+    setTimeout(() => { el.innerHTML = orig; }, 2000);
+  }).catch(() => {
+    window.location.href = 'mailto:' + email;
+  });
+}
+
 // ===== SMOOTH SCROLL (anchor offset) =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
