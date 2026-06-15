@@ -525,29 +525,19 @@ function sendLead() {
   localStorage.setItem('intelline_chat', JSON.stringify(agent.user));
 }
 
-// ===== BRIEF FORM =====
-const briefForm = document.getElementById('briefForm');
-if (briefForm) {
-  briefForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(briefForm);
-    const data = Object.fromEntries(formData.entries());
-    fetch(briefForm.action, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: { 'Accept': 'application/json' }
-    }).then(res => res.json()).then(res => {
-      if (res.success) {
-        briefForm.innerHTML = `
-          <div style="text-align:center;padding:20px 0;">
-            <div style="font-size:3rem;margin-bottom:16px;color:var(--accent);">✓</div>
-            <h3 style="margin-bottom:8px;">Спасибо!</h3>
-            <p style="color:var(--text2);">Мы получили вашу заявку и свяжемся в течение 24 часов.</p>
-          </div>
-        `;
-      }
-    }).catch(() => {});
-  });
+// ===== SUCCESS MESSAGE =====
+if (window.location.search.includes('success=1')) {
+  const el = document.querySelector('.contact-form');
+  if (el) {
+    el.innerHTML = `
+      <div style="text-align:center;padding:20px 0;">
+        <div style="font-size:3rem;margin-bottom:16px;color:var(--accent);">✓</div>
+        <h3 style="margin-bottom:8px;">Спасибо!</h3>
+        <p style="color:var(--text2);">Мы получили вашу заявку и свяжемся в течение 24 часов.</p>
+      </div>
+    `;
+    window.history.replaceState({}, '', window.location.pathname);
+  }
 }
 
 // ===== SMOOTH SCROLL (anchor offset) =====
