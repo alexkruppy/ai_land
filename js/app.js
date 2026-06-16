@@ -311,8 +311,26 @@ async function processInput(text) {
 
   if (agent.step === 'pain') {
     agent.user.pain = text;
-    const suggestions = getSolution(text);
-    await aiReply(suggestions);
+    try {
+      const resp = await fetch('send-message.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history: agent.history })
+      });
+      const data = await resp.json();
+      if (data.reply) {
+        await aiReply(data.reply);
+        agent.step = 'solution';
+        await delay(500);
+        showOptions([
+          { label: 'Да, интересно!', action: () => askContact() },
+          { label: 'Расскажи подробнее', action: () => tellMore() },
+          { label: 'Сколько стоит?', action: () => askPrice() }
+        ]);
+        return;
+      }
+    } catch(e) {}
+    await aiReply('Расскажите подробнее о вашей задаче, и я предложу оптимальное решение.');
     agent.step = 'solution';
     await delay(500);
     showOptions([
@@ -416,13 +434,7 @@ async function processInput(text) {
     return;
   }
 
-  if (knowledge) {
-    await aiReply(knowledge);
-    enableInput();
-    return;
-  }
-
-  // Fallback to Gemini AI
+  // Gemini AI first
   try {
     const resp = await fetch('send-message.php', {
       method: 'POST',
@@ -436,6 +448,12 @@ async function processInput(text) {
       return;
     }
   } catch(e) {}
+
+  if (knowledge) {
+    await aiReply(knowledge);
+    enableInput();
+    return;
+  }
 
   await aiReply('Интересный вопрос! Если хотите, я могу:<br>• Рассказать о наших решениях<br>• Объяснить процесс внедрения<br>• Назвать стоимость<br>• Передать ваш контакт менеджеру');
   showOptions([
