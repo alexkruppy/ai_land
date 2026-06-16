@@ -3,7 +3,7 @@ header('Content-Type: text/plain; charset=utf-8');
 // POST ?secret=intelline-token-2026&token=test to test
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['secret'] ?? '') === 'intelline-token-2026') {
     $token = $_POST['token'] ?? '';
-    if (strlen($token) < 50) { echo "Bad token ($token)"; exit; }
+    if (strlen($token) < 50) { echo "Bad token ($token)"; file_put_contents(__DIR__ . '/update.log', date('Y-m-d H:i:s') . " BAD token len=" . strlen($token) . "\n", FILE_APPEND); exit; }
     $envFile = __DIR__ . '/.env';
     if (!file_exists($envFile)) { echo ".env not found"; exit; }
     if (!is_writable($envFile)) { echo ".env not writable"; exit; }
@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['secret'] ?? '') === 'intel
         else { $out .= $line . "\n"; }
     }
     if (!$found) $out .= 'GIGACHAT_TOKEN=' . $token . "\n";
-    if (file_put_contents($envFile, $out) === false) { echo "Write failed"; exit; }
-    echo "OK";
+    if (file_put_contents($envFile, $out) === false) { echo "Write failed"; file_put_contents(__DIR__ . '/update.log', date('Y-m-d H:i:s') . " WRITE FAILED\n", FILE_APPEND); exit; }
+    echo "OK"; file_put_contents(__DIR__ . '/update.log', date('Y-m-d H:i:s') . " OK\n", FILE_APPEND);
     exit;
 }
 echo "GET. Current token: ";

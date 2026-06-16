@@ -132,6 +132,11 @@ list($code, $body, $err) = gigachatRequest(
 );
 
 if ($code !== 200) {
+    $log = date('Y-m-d H:i:s') . " GigaChat API error: code=$code err=$err body=$body\n";
+    file_put_contents(__DIR__ . '/gigachat_error.log', $log, FILE_APPEND);
+    if ($code === 401) {
+        exit(json_encode(['error' => 'Токен устарел, GitHub Action скоро обновит. Попробуйте через минуту.']));
+    }
     http_response_code(502);
     exit(json_encode(['error' => 'GigaChat API error', 'detail' => $body ?: $err]));
 }
