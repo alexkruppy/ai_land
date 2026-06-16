@@ -97,14 +97,6 @@ if (!$accessToken) {
         }
     }
 
-    // Fallback: fetch token from GitHub repo
-    if (!$accessToken) {
-        $ghToken = @file_get_contents('https://raw.githubusercontent.com/alexkruppy/ai_land/main/token.txt');
-        if ($ghToken && strlen($ghToken) > 50) {
-            $accessToken = trim($ghToken);
-        }
-    }
-
     if (!$accessToken) {
         http_response_code(502);
         exit(json_encode(['error' => 'No access token available']));
