@@ -257,19 +257,9 @@ chatBubble.addEventListener('click', () => {
   chatBubble.classList.add('hidden');
   chatPanel.classList.add('open');
   scrollChat();
-  // After opening, show niche selection options
-  if (agent.step === 'intro') {
-    setTimeout(() => {
-      showOptions([
-        { label: 'Производство', action: () => setNiche('Производство') },
-        { label: 'Ритейл / E-com', action: () => setNiche('Ритейл / E-commerce') },
-        { label: 'Логистика', action: () => setNiche('Логистика') },
-        { label: 'Услуги', action: () => setNiche('Услуги') },
-        { label: 'IT / Финтех', action: () => setNiche('IT / Финтех') },
-        { label: 'Другое', action: () => setNiche('Другое') }
-      ]);
-    }, 600);
-  }
+  agent.step = 'general';
+  showInput('Задайте вопрос...', null);
+  enableInput();
 });
 
 chatClose.addEventListener('click', () => {
@@ -293,79 +283,6 @@ function handleUserInput() {
 }
 
 async function processInput(text) {
-  const knowledge = matchKnowledge(text);
-
-  if (agent.step === 'intro') {
-    return;
-  }
-
-  if (agent.step === 'niche') {
-    const n = text.charAt(0).toUpperCase() + text.slice(1);
-    agent.user.niche = n;
-    await aiReply(`<b>${n}</b> — отличная ниша! Расскажите, какая задача в бизнесе сейчас болит больше всего? Что хотите автоматизировать?`);
-    agent.step = 'pain';
-    showInput('Опишите вашу задачу...', null);
-    enableInput();
-    return;
-  }
-
-  if (agent.step === 'pain') {
-    agent.user.pain = text;
-    try {
-      const resp = await fetch('send-message.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: agent.history })
-      });
-      const data = await resp.json();
-      if (data.reply) {
-        await aiReply(data.reply);
-        agent.step = 'solution';
-        await delay(500);
-        showOptions([
-          { label: 'Да, интересно!', action: () => askContact() },
-          { label: 'Расскажи подробнее', action: () => tellMore() },
-          { label: 'Сколько стоит?', action: () => askPrice() }
-        ]);
-        return;
-      }
-    } catch(e) {}
-    await aiReply('Расскажите подробнее о вашей задаче, и я предложу оптимальное решение.');
-    agent.step = 'solution';
-    await delay(500);
-    showOptions([
-      { label: 'Да, интересно!', action: () => askContact() },
-      { label: 'Расскажи подробнее', action: () => tellMore() },
-      { label: 'Сколько стоит?', action: () => askPrice() }
-    ]);
-    return;
-  }
-
-  if (agent.step === 'solution') {
-    if (text.includes('да') || text.includes('интерес') || text.includes('хочу')) {
-      askContact();
-    } else if (text.includes('цен') || text.includes('сто') || text.includes('бюдж')) {
-      askPrice();
-    } else if (text.includes('подроб') || text.includes('еще') || text.includes('расскаж')) {
-      tellMore();
-    } else if (knowledge) {
-      await aiReply(knowledge);
-      await delay(400);
-      showOptions([
-        { label: 'Хочу внедрить', action: () => askContact() },
-        { label: 'Другой вопрос', action: () => otherQuestion() },
-        { label: 'Сколько стоит?', action: () => askPrice() }
-      ]);
-    } else {
-      await aiReply('Я не совсем понял. Могу рассказать о наших решениях, стоимости или сразу передать ваш контакт менеджеру.');
-      showOptions([
-        { label: 'Рассказать о решениях', action: () => tellMore() },
-        { label: 'Сколько стоит?', action: () => askPrice() },
-        { label: 'Хочу внедрить', action: () => askContact() }
-      ]);
-    }
-    return;
-  }
 
   if (agent.step === 'contact') {
     agent.user.contact = text;
@@ -387,54 +304,7 @@ async function processInput(text) {
     return;
   }
 
-  if (agent.step === 'price') {
-    if (text.includes('контакт') || text.includes('связ') || text.includes('да') || text.includes('хоч')) {
-      askContact();
-    } else if (text.includes('друг') || text.includes('нет')) {
-      otherQuestion();
-    } else if (knowledge) {
-      await aiReply(knowledge);
-      await delay(400);
-      showOptions([
-        { label: 'Оставить контакт', action: () => askContact() },
-        { label: 'Другой вопрос', action: () => otherQuestion() }
-      ]);
-    } else {
-      await aiReply('Не стесняйтесь спрашивать! Я могу ответить на вопросы о решениях, процессе или стоимости.');
-      showOptions([
-        { label: 'Оставить контакт', action: () => askContact() },
-        { label: 'О решениях', action: () => tellMore() },
-        { label: 'О процессе', action: () => { aiReply(kb.process); } }
-      ]);
-    }
-    return;
-  }
-
-  if (agent.step === 'tellmore') {
-    if (text.includes('поддер') || text.includes('саппорт') || text.includes('чат')) {
-      await aiReply(kb.solutions.support + '<br><br>Хотите узнать стоимость или оставить заявку?');
-      showOptions([{ label: 'Сколько стоит?', action: () => askPrice() }, { label: 'Оставить контакт', action: () => askContact() }]);
-    } else if (text.includes('докум') || text.includes('отчёт') || text.includes('сверк')) {
-      await aiReply(kb.solutions.analytics + '<br><br>Подходит под вашу задачу?');
-      showOptions([{ label: 'Да, оставлю заявку', action: () => askContact() }, { label: 'Что ещё есть?', action: () => tellMore() }]);
-    } else if (text.includes('crm') || text.includes('срм') || text.includes('амо')) {
-      await aiReply(kb.solutions.crm + '<br><br>Заинтересовало?');
-      showOptions([{ label: 'Да', action: () => askContact() }, { label: 'Расскажи о другом', action: () => tellMore() }]);
-    } else if (text.includes('аналитик') || text.includes('анализ') || text.includes('дашборд')) {
-      await aiReply(kb.solutions.analytics + '<br><br>Хотите попробовать?');
-      showOptions([{ label: 'Оставить заявку', action: () => askContact() }, { label: 'Другое решение', action: () => tellMore() }]);
-    } else {
-      await aiReply('У нас 3 направления:<br><br>1. 🤖 AI-агенты для поддержки<br>2. ⚡ AI-агенты для продаж<br>3. 📊 Аналитические AI-агенты<br><br>Какое интересует?');
-      showOptions([
-        { label: 'Поддержка', action: () => { aiReply(kb.solutions.support); showExploreOpts(); } },
-        { label: 'Продажи', action: () => { aiReply(kb.solutions.sales); showExploreOpts(); } },
-        { label: 'Аналитика', action: () => { aiReply(kb.solutions.analytics); showExploreOpts(); } }
-      ]);
-    }
-    return;
-  }
-
-  // Gemini AI first
+  // Gemini
   try {
     const resp = await fetch('send-message.php', {
       method: 'POST',
@@ -449,18 +319,9 @@ async function processInput(text) {
     }
   } catch(e) {}
 
-  if (knowledge) {
-    await aiReply(knowledge);
-    enableInput();
-    return;
-  }
-
-  await aiReply('Интересный вопрос! Если хотите, я могу:<br>• Рассказать о наших решениях<br>• Объяснить процесс внедрения<br>• Назвать стоимость<br>• Передать ваш контакт менеджеру');
-  showOptions([
-    { label: 'О решениях', action: () => tellMore() },
-    { label: 'Стоимость', action: () => askPrice() },
-    { label: 'Оставить контакт', action: () => askContact() }
-  ]);
+  await aiReply('Извините, я временно не могу ответить. Попробуйте позже или оставьте контакт — мы свяжемся с вами.');
+  showInput('Задайте вопрос...', null);
+  enableInput();
 }
 
 function enableInput() {
