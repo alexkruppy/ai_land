@@ -15,20 +15,23 @@ if (!$message) {
     exit(json_encode(['error' => 'Message required']));
 }
 
-$auth = getenv('GIGACHAT_CREDENTIALS');
-if (!$auth && file_exists(__DIR__ . '/.env')) {
-    $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
-        if (strpos(trim($line), 'GIGACHAT_CREDENTIALS=') === 0) {
-            $auth = trim(substr($line, 20));
-            break;
+$envFile = __DIR__ . '/.env';
+$envVars = [];
+if (file_exists($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        $line = trim($line);
+        if (strpos($line, '=') !== false && $line[0] !== '#') {
+            list($k, $v) = explode('=', $line, 2);
+            $envVars[trim($k)] = trim($v);
         }
     }
 }
 
-if (!$auth) {
-    http_response_code(500);
-    exit(json_encode(['error' => 'GigaChat credentials not configured']));
+$accessToken = $envVars['GIGACHAT_TOKEN'] ?? getenv('GIGACHAT_TOKEN');
+$auth = $envVars['GIGACHAT_CREDENTIALS'] ?? getenv('GIGACHAT_CREDENTIALS');
+
+if ($accessToken) {
+    // Token provided directly - skip OAuth (for hosting without OAuth access)
 }
 
 $skillsDir = __DIR__ . '/skills';
@@ -50,21 +53,23 @@ function uuid() {
         mt_rand(0, 0xffff),
         mt_rand(0, 0x0fff) | 0x4000,
         mt_rand(0, 0x3fff) | 0x8000,
-        mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
-    );
+        mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
 }
 
-function gigachatRequest($url, $headers, $payload, $sslVerify) {
+function gigachatRequest($url, $headers, $payload, $follow = false) {
     $ch = curl_init($url);
-    curl_setopt_array($ch, [
+    $opts = [
         CURLOPT_POST => true,
         CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_POSTFIELDS => $payload,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT => 30,
-        CURLOPT_SSL_VERIFYPEER => $sslVerify,
-        CURLOPT_SSL_VERIFYHOST => $sslVerify ? 2 : 0
-    ]);
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => 0,
+    ];
+    if ($payload !== null) $opts[CURLOPT_POSTFIELDS] = $payload;
+    if ($follow) $opts[CURLOPT_FOLLOWLOCATION] = true;
+    curl_setopt_array($ch, $opts);
     $resp = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $error = curl_error($ch);
@@ -72,31 +77,39 @@ function gigachatRequest($url, $headers, $payload, $sslVerify) {
     return [$httpCode, $resp, $error];
 }
 
-$rqUid = uuid();
-list($code, $body, $err) = gigachatRequest(
-    'https://ngw.devices.sberbank.ru/api/v2/oauth',
-    [
-        'Authorization: Basic ' . $auth,
-        'Content-Type: application/x-www-form-urlencoded',
-        'RqUID: ' . $rqUid,
-        'Accept: application/json',
-        'User-Agent: IntelLine/1.0'
-    ],
-    'scope=GIGACHAT_API_PERS',
-    false
-);
-
-if ($code !== 200) {
-    http_response_code(502);
-    exit(json_encode(['error' => 'GigaChat auth failed', 'detail' => $body ?: $err]));
-}
-
-$tokenData = json_decode($body, true);
-$accessToken = $tokenData['access_token'] ?? '';
-
 if (!$accessToken) {
-    http_response_code(502);
-    exit(json_encode(['error' => 'No access token']));
+    if (!$auth) {
+        http_response_code(500);
+        exit(json_encode(['error' => 'GigaChat not configured: set GIGACHAT_TOKEN or GIGACHAT_CREDENTIALS']));
+    }
+
+    $rqUid = '3107d4f7-dd40-41b1-82d2-4f04e7b96365';
+    $body = http_build_query(['scope' => 'GIGACHAT_API_PERS']);
+
+    list($code, $resp, $err) = gigachatRequest(
+        'https://ngw.devices.sberbank.ru:9443/api/v2/oauth',
+        [
+            'Authorization: Basic ' . $auth,
+            'Content-Type: application/x-www-form-urlencoded',
+            'Accept: application/json',
+            'RqUID: ' . $rqUid,
+        ],
+        $body,
+        true
+    );
+
+    if ($code !== 200) {
+        http_response_code(502);
+        exit(json_encode(['error' => 'GigaChat auth failed', 'detail' => $resp ?: $err]));
+    }
+
+    $tokenData = json_decode($resp, true);
+    $accessToken = $tokenData['access_token'] ?? '';
+
+    if (!$accessToken) {
+        http_response_code(502);
+        exit(json_encode(['error' => 'No access token']));
+    }
 }
 
 $messages = [];
@@ -121,7 +134,7 @@ list($code, $body, $err) = gigachatRequest(
         'Authorization: Bearer ' . $accessToken,
         'Content-Type: application/json',
         'Accept: application/json',
-        'User-Agent: IntelLine/1.0'
+        'User-Agent: IntelLine/1.0',
     ],
     $payload,
     false
