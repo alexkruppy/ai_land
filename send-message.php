@@ -19,7 +19,7 @@ $geminiKey = getenv('GEMINI_API_KEY');
 if (!$geminiKey && file_exists(__DIR__ . '/.env')) {
     $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-        if (str_starts_with(trim($line), 'GEMINI_API_KEY=')) {
+        if (strpos(trim($line), 'GEMINI_API_KEY=') === 0) {
             $geminiKey = trim(substr($line, 15));
             break;
         }
