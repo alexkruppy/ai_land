@@ -30,10 +30,6 @@ if (file_exists($envFile)) {
 $accessToken = $envVars['GIGACHAT_TOKEN'] ?? getenv('GIGACHAT_TOKEN');
 $auth = $envVars['GIGACHAT_CREDENTIALS'] ?? getenv('GIGACHAT_CREDENTIALS');
 
-if ($accessToken) {
-    // Token provided directly - skip OAuth (for hosting without OAuth access)
-}
-
 $skillsDir = __DIR__ . '/skills';
 $knowledge = '';
 if (is_dir($skillsDir)) {
@@ -78,37 +74,40 @@ function gigachatRequest($url, $headers, $payload, $follow = false) {
 }
 
 if (!$accessToken) {
-    if (!$auth) {
-        http_response_code(500);
-        exit(json_encode(['error' => 'GigaChat not configured: set GIGACHAT_TOKEN or GIGACHAT_CREDENTIALS']));
+    // Try OAuth
+    if ($auth) {
+        $rqUid = '3107d4f7-dd40-41b1-82d2-4f04e7b96365';
+        $body = http_build_query(['scope' => 'GIGACHAT_API_PERS']);
+
+        list($code, $resp, $err) = gigachatRequest(
+            'https://ngw.devices.sberbank.ru:9443/api/v2/oauth',
+            [
+                'Authorization: Basic ' . $auth,
+                'Content-Type: application/x-www-form-urlencoded',
+                'Accept: application/json',
+                'RqUID: ' . $rqUid,
+            ],
+            $body,
+            true
+        );
+
+        if ($code === 200) {
+            $tokenData = json_decode($resp, true);
+            $accessToken = $tokenData['access_token'] ?? '';
+        }
     }
 
-    $rqUid = '3107d4f7-dd40-41b1-82d2-4f04e7b96365';
-    $body = http_build_query(['scope' => 'GIGACHAT_API_PERS']);
-
-    list($code, $resp, $err) = gigachatRequest(
-        'https://ngw.devices.sberbank.ru:9443/api/v2/oauth',
-        [
-            'Authorization: Basic ' . $auth,
-            'Content-Type: application/x-www-form-urlencoded',
-            'Accept: application/json',
-            'RqUID: ' . $rqUid,
-        ],
-        $body,
-        true
-    );
-
-    if ($code !== 200) {
-        http_response_code(502);
-        exit(json_encode(['error' => 'GigaChat auth failed', 'detail' => $resp ?: $err]));
+    // Fallback: fetch token from GitHub repo
+    if (!$accessToken) {
+        $ghToken = @file_get_contents('https://raw.githubusercontent.com/alexkruppy/ai_land/main/token.txt');
+        if ($ghToken && strlen($ghToken) > 50) {
+            $accessToken = trim($ghToken);
+        }
     }
-
-    $tokenData = json_decode($resp, true);
-    $accessToken = $tokenData['access_token'] ?? '';
 
     if (!$accessToken) {
         http_response_code(502);
-        exit(json_encode(['error' => 'No access token']));
+        exit(json_encode(['error' => 'No access token available']));
     }
 }
 
