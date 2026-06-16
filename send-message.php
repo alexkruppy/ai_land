@@ -74,7 +74,7 @@ function gigachatRequest($url, $headers, $payload, $sslVerify) {
 
 $rqUid = uuid();
 list($code, $body, $err) = gigachatRequest(
-    'https://ngw.devices.sberbank.ru:9443/api/v2/oauth',
+    'https://api.giga.chat/v1/oauth',
     [
         'Authorization: Basic ' . $auth,
         'Content-Type: application/x-www-form-urlencoded',
@@ -115,7 +115,7 @@ $payload = json_encode([
 ]);
 
 list($code, $body, $err) = gigachatRequest(
-    'https://gigachat.devices.sberbank.ru/api/v1/chat/completions',
+    'https://api.giga.chat/v1/chat/completions',
     [
         'Authorization: Bearer ' . $accessToken,
         'Content-Type: application/json',
