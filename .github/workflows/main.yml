@@ -16,4 +16,4 @@ jobs:
             -H 'Authorization: Basic MDE5ZWI3NTUtZDY0OC03YmUwLWFmNjQtYzFkZjU4MzQ1MDNhOjhkN2EwM2UyLWI2OWUtNDU0OC04YjdjLTY0NDdiNjg3YzY2Nw==' \
             --data-urlencode 'scope=GIGACHAT_API_PERS' | jq -r '.access_token')
           curl -s -X POST 'http://intelline.ru/update-token.php' \
-            -d "secret=intelline-token-2026&token=$TOKEN"
+            --data-urlencode "secret=intelline-token-2026" --data-urlencode "token=$TOKEN"
